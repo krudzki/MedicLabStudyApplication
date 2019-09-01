@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Net.Mail;
 using System.Windows.Forms;
+using MedicLabStudyApplication.Libs.Email;
 
 namespace MedicLabStudyApplication
 {
@@ -14,48 +15,20 @@ namespace MedicLabStudyApplication
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonSendClick(object sender, EventArgs e)
         {
             try
             {
-                //here on button click what will done 
-                wyslij();
-                MessageBox.Show("Wysłano wiadomość do MediLAB");
-                //DisplayMessage.Visible = true;
-                subjectTB.Text = "";
-                mailTB.Text = "";
-                nameTB.Text = "";
-                questionRTB.Text = "";
+                Email.send(inputName.Text, inputEmail.Text, inputSubject.Text, inputQuestion.Text);
+                MessageBox.Show("The message was send to MedicLab!");
+                inputName.Clear();
+                inputEmail.Clear();
+                inputSubject.Clear();
+                inputQuestion.Clear();
             }
-            catch (Exception) { }
-        }
-
-
-        public void wyslij()
-        {
-
-            SmtpClient smtpClient = new SmtpClient(); //tworzymy klienta smtp
-            smtpClient.UseDefaultCredentials = false;
-            smtpClient.EnableSsl = true;
-            smtpClient.Port = 587;
-            MailMessage message = new MailMessage();//tworzymy wiadomość
-            MailAddress from = new MailAddress(mailTB.Text, nameTB.Text);//adres nadawcy i nazwa nadawcy
-
-            message.From = from;
-            message.To.Add("projekt.zespolowy14@gmail.com");//adres odbiorcy
-            message.Subject = subjectTB.Text;//temat wiadomości
-            message.Body = questionRTB.Text + "\n\n" + mailTB.Text + " : " + nameTB.Text; //treść wiadomości
-            smtpClient.Host = "smtp.gmail.com"; //host serwera
-            smtpClient.Credentials = new System.Net.NetworkCredential("projekt.zespolowy14@gmail.com", "SilneHaslo");//nazwa nadawcy i hasło
-            try
+            catch (Exception ex)
             {
-                smtpClient.SendAsync(message, "nazwaOdbiorcy@gmail.com");//nazwa odbiorcy, wysyłamy wiadomość
-            }
-            catch (SmtpException ex)
-            {
-
-                throw new ApplicationException("Klient SMTP wywołał wyjątek. Sprawdź połączenie z internetem." + ex.Message);
-
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 

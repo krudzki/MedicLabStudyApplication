@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutUsForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.usPhoto = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usPhoto)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -47,18 +47,18 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox2
+            // usPhoto
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(761, 220);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(460, 345);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
+            this.usPhoto.BackColor = System.Drawing.Color.Transparent;
+            this.usPhoto.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("usPhoto.BackgroundImage")));
+            this.usPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.usPhoto.Image = ((System.Drawing.Image)(resources.GetObject("usPhoto.Image")));
+            this.usPhoto.Location = new System.Drawing.Point(761, 220);
+            this.usPhoto.Name = "usPhoto";
+            this.usPhoto.Size = new System.Drawing.Size(460, 345);
+            this.usPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.usPhoto.TabIndex = 1;
+            this.usPhoto.TabStop = false;
             // 
             // label1
             // 
@@ -89,12 +89,12 @@
             this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.usPhoto);
             this.Controls.Add(this.pictureBox1);
             this.Name = "AboutUsForm";
             this.Text = "About Us";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usPhoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,7 +103,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox usPhoto;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
     }

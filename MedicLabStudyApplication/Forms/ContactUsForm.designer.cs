@@ -30,15 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContactUsForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.nameTB = new System.Windows.Forms.TextBox();
-            this.mailTB = new System.Windows.Forms.TextBox();
-            this.subjectTB = new System.Windows.Forms.TextBox();
-            this.questionRTB = new System.Windows.Forms.RichTextBox();
+            this.inputName = new System.Windows.Forms.TextBox();
+            this.inputEmail = new System.Windows.Forms.TextBox();
+            this.inputSubject = new System.Windows.Forms.TextBox();
+            this.inputQuestion = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.sendButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,35 +54,35 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // nameTB
+            // inputName
             // 
-            this.nameTB.Location = new System.Drawing.Point(461, 25);
-            this.nameTB.Name = "nameTB";
-            this.nameTB.Size = new System.Drawing.Size(287, 20);
-            this.nameTB.TabIndex = 1;
-            this.nameTB.TextChanged += new System.EventHandler(this.nameTB_TextChanged);
+            this.inputName.Location = new System.Drawing.Point(461, 25);
+            this.inputName.Name = "inputName";
+            this.inputName.Size = new System.Drawing.Size(287, 20);
+            this.inputName.TabIndex = 1;
+            this.inputName.TextChanged += new System.EventHandler(this.nameTB_TextChanged);
             // 
-            // mailTB
+            // inputEmail
             // 
-            this.mailTB.Location = new System.Drawing.Point(461, 88);
-            this.mailTB.Name = "mailTB";
-            this.mailTB.Size = new System.Drawing.Size(287, 20);
-            this.mailTB.TabIndex = 2;
+            this.inputEmail.Location = new System.Drawing.Point(461, 88);
+            this.inputEmail.Name = "inputEmail";
+            this.inputEmail.Size = new System.Drawing.Size(287, 20);
+            this.inputEmail.TabIndex = 2;
             // 
-            // subjectTB
+            // inputSubject
             // 
-            this.subjectTB.Location = new System.Drawing.Point(461, 153);
-            this.subjectTB.Name = "subjectTB";
-            this.subjectTB.Size = new System.Drawing.Size(287, 20);
-            this.subjectTB.TabIndex = 3;
+            this.inputSubject.Location = new System.Drawing.Point(461, 153);
+            this.inputSubject.Name = "inputSubject";
+            this.inputSubject.Size = new System.Drawing.Size(287, 20);
+            this.inputSubject.TabIndex = 3;
             // 
-            // questionRTB
+            // inputQuestion
             // 
-            this.questionRTB.Location = new System.Drawing.Point(461, 209);
-            this.questionRTB.Name = "questionRTB";
-            this.questionRTB.Size = new System.Drawing.Size(287, 171);
-            this.questionRTB.TabIndex = 4;
-            this.questionRTB.Text = "";
+            this.inputQuestion.Location = new System.Drawing.Point(461, 209);
+            this.inputQuestion.Name = "inputQuestion";
+            this.inputQuestion.Size = new System.Drawing.Size(287, 171);
+            this.inputQuestion.TabIndex = 4;
+            this.inputQuestion.Text = "";
             // 
             // label1
             // 
@@ -124,34 +124,34 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Your Question:";
             // 
-            // button1
+            // sendButton
             // 
-            this.button1.Location = new System.Drawing.Point(461, 387);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Send";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.sendButton.Location = new System.Drawing.Point(461, 387);
+            this.sendButton.Name = "sendButton";
+            this.sendButton.Size = new System.Drawing.Size(75, 23);
+            this.sendButton.TabIndex = 9;
+            this.sendButton.Text = "Send";
+            this.sendButton.UseVisualStyleBackColor = true;
+            this.sendButton.Click += new System.EventHandler(this.buttonSendClick);
             // 
-            // F_ContactUs
+            // ContactUsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.sendButton);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.nameTB);
-            this.Controls.Add(this.mailTB);
-            this.Controls.Add(this.subjectTB);
-            this.Controls.Add(this.questionRTB);
+            this.Controls.Add(this.inputName);
+            this.Controls.Add(this.inputEmail);
+            this.Controls.Add(this.inputSubject);
+            this.Controls.Add(this.inputQuestion);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "F_ContactUs";
+            this.Name = "ContactUsForm";
             this.Text = "Contact Us";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -162,14 +162,14 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox nameTB;
-        private System.Windows.Forms.TextBox mailTB;
-        private System.Windows.Forms.TextBox subjectTB;
-        private System.Windows.Forms.RichTextBox questionRTB;
+        private System.Windows.Forms.TextBox inputName;
+        private System.Windows.Forms.TextBox inputEmail;
+        private System.Windows.Forms.TextBox inputSubject;
+        private System.Windows.Forms.RichTextBox inputQuestion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button sendButton;
     }
 }

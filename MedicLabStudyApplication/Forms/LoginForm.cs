@@ -13,17 +13,14 @@ namespace MedicLabStudyApplication
 {
     public partial class LoginForm : Form
     {
-        C_Login_Check login = new C_Login_Check();
-        F_AddAccount addAccount = new F_AddAccount();
+        C_Login_Check loginValidator = new C_Login_Check();
+        F_AddAccount userCreator = new F_AddAccount();
 
         F_MainWindowForm mainWindow = new F_MainWindowForm();
         public LoginForm()
         {
             InitializeComponent();
         }
-
-        // Enter code here for your version of username and userpassword
-        //C_Login login = new C_Login("admin", "1234");
 
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -34,7 +31,7 @@ namespace MedicLabStudyApplication
 
             // check if eligible to be logged in
 
-            if (login.check(user,password))
+            if (loginValidator.check(user,password))
             {
 
                 MessageBox.Show("You are logged in successfully");
@@ -65,7 +62,7 @@ namespace MedicLabStudyApplication
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
-            addAccount.ShowDialog();
+            userCreator.ShowDialog();
         }
     }
 }

@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace MedicLabStudyApplication
 {
-    public partial class F_Services : Form
+    public partial class ServicesForm : Form
     {
-        public F_Services()
+        public ServicesForm()
         {
             InitializeComponent();
         }

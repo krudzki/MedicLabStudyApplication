@@ -1,6 +1,6 @@
 ﻿namespace MedicLabStudyApplication
 {
-    partial class F_Doctors
+    partial class DoctorsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_Doctors));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DoctorsForm));
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonInsert = new System.Windows.Forms.Button();
@@ -195,7 +195,7 @@
             this.textBoxTelephone.Size = new System.Drawing.Size(298, 24);
             this.textBoxTelephone.TabIndex = 41;
             // 
-            // F_Doctors
+            // DoctorsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -219,8 +219,8 @@
             this.Controls.Add(this.labelFirstName);
             this.Controls.Add(this.textBoxFirstName);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "F_Doctors";
-            this.Text = "F_Doctors";
+            this.Name = "DoctorsForm";
+            this.Text = "Doctors";
             this.Load += new System.EventHandler(this.F_Doctors_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

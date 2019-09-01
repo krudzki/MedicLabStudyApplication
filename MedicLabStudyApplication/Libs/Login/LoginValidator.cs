@@ -8,14 +8,14 @@ using System.Windows.Forms;
 
 namespace MedicLabStudyApplication
 {
-    class C_Login
+    class LoginValidator
     {
         // declare properties
         public string Username { get; set; }
         public string Userpassword { get; set; }
 
         // initialise
-        public C_Login(string user, string password)
+        public LoginValidator(string user, string password)
         {
             this.Username = user;
             this.Userpassword = password;

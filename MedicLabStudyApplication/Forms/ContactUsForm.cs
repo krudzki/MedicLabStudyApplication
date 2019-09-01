@@ -7,9 +7,9 @@ using System.Windows.Forms;
 
 namespace MedicLabStudyApplication
 {
-    public partial class F_ContactUs : Form
+    public partial class ContactUsForm : Form
     {
-        public F_ContactUs()
+        public ContactUsForm()
         {
             InitializeComponent();
         }

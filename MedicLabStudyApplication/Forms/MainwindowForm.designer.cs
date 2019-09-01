@@ -1,6 +1,6 @@
 ﻿namespace MedicLabStudyApplication
 {
-    partial class F_MainWindowForm
+    partial class MainWindowForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_MainWindowForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindowForm));
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.hOMEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +58,7 @@
             this.monthCalendar1.Location = new System.Drawing.Point(724, 347);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
-            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
+            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.calendarDateChange);
             // 
             // menuStrip1
             // 
@@ -82,42 +82,42 @@
             this.hOMEToolStripMenuItem.Name = "hOMEToolStripMenuItem";
             this.hOMEToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
             this.hOMEToolStripMenuItem.Text = "HOME";
-            this.hOMEToolStripMenuItem.Click += new System.EventHandler(this.hOMEToolStripMenuItem_Click);
+            this.hOMEToolStripMenuItem.Click += new System.EventHandler(this.mainWindowRefresh);
             // 
             // mEDICALSERVICESToolStripMenuItem
             // 
             this.mEDICALSERVICESToolStripMenuItem.Name = "mEDICALSERVICESToolStripMenuItem";
             this.mEDICALSERVICESToolStripMenuItem.Size = new System.Drawing.Size(196, 24);
             this.mEDICALSERVICESToolStripMenuItem.Text = "MEDICAL SERVICES";
-            this.mEDICALSERVICESToolStripMenuItem.Click += new System.EventHandler(this.mEDICALSERVICESToolStripMenuItem_Click);
+            this.mEDICALSERVICESToolStripMenuItem.Click += new System.EventHandler(this.openServicesForm);
             // 
             // doctorsToolStripMenuItem
             // 
             this.doctorsToolStripMenuItem.Name = "doctorsToolStripMenuItem";
             this.doctorsToolStripMenuItem.Size = new System.Drawing.Size(107, 24);
             this.doctorsToolStripMenuItem.Text = "DOCTORS";
-            this.doctorsToolStripMenuItem.Click += new System.EventHandler(this.doctorsToolStripMenuItem_Click);
+            this.doctorsToolStripMenuItem.Click += new System.EventHandler(this.openDoctorsForm);
             // 
             // mEDICINESToolStripMenuItem
             // 
             this.mEDICINESToolStripMenuItem.Name = "mEDICINESToolStripMenuItem";
             this.mEDICINESToolStripMenuItem.Size = new System.Drawing.Size(120, 24);
             this.mEDICINESToolStripMenuItem.Text = "MEDICINES";
-            this.mEDICINESToolStripMenuItem.Click += new System.EventHandler(this.mEDICINESToolStripMenuItem_Click);
+            this.mEDICINESToolStripMenuItem.Click += new System.EventHandler(this.openMedicinesForm);
             // 
             // mOREABOUTUSToolStripMenuItem
             // 
             this.mOREABOUTUSToolStripMenuItem.Name = "mOREABOUTUSToolStripMenuItem";
             this.mOREABOUTUSToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
             this.mOREABOUTUSToolStripMenuItem.Text = "MORE ABOUT US";
-            this.mOREABOUTUSToolStripMenuItem.Click += new System.EventHandler(this.mOREABOUTUSToolStripMenuItem_Click);
+            this.mOREABOUTUSToolStripMenuItem.Click += new System.EventHandler(this.openAboutUsForm);
             // 
             // cONTACTToolStripMenuItem
             // 
             this.cONTACTToolStripMenuItem.Name = "cONTACTToolStripMenuItem";
             this.cONTACTToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.cONTACTToolStripMenuItem.Text = "CONTACT US";
-            this.cONTACTToolStripMenuItem.Click += new System.EventHandler(this.cONTACTToolStripMenuItem_Click);
+            this.cONTACTToolStripMenuItem.Click += new System.EventHandler(this.openContactUsForm);
             // 
             // pictureBox1
             // 
@@ -144,7 +144,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "MEDICAL SERVICES";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.openServicesForm);
             // 
             // button2
             // 
@@ -158,7 +158,7 @@
             this.button2.Text = "DOCTORS";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.openDoctorsForm);
             // 
             // button3
             // 
@@ -170,7 +170,7 @@
             this.button3.TabIndex = 5;
             this.button3.Text = "MEDICINES";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.openMedicinesForm);
             // 
             // flowLayoutPanel1
             // 
@@ -220,8 +220,8 @@
             this.Name = "F_MainWindowForm";
             this.Text = "MedicLAB";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.F_MainWindowForm_FormClosing);
-            this.Load += new System.EventHandler(this.F_MainWindowForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindowClouseClick);
+            this.Load += new System.EventHandler(this.mainWindowLoad);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

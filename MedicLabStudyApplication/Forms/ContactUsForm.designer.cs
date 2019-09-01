@@ -1,6 +1,6 @@
 ﻿namespace MedicLabStudyApplication
 {
-    partial class F_ContactUs
+    partial class ContactUsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_ContactUs));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ContactUsForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.nameTB = new System.Windows.Forms.TextBox();
             this.mailTB = new System.Windows.Forms.TextBox();

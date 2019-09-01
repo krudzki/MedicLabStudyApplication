@@ -1,6 +1,6 @@
 ﻿namespace MedicLabStudyApplication
 {
-    partial class F_AddAccount
+    partial class UserCreatorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_AddAccount));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserCreatorForm));
             this.labelUser = new System.Windows.Forms.Label();
             this.textBoxLogin = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -96,7 +96,7 @@
             this.Controls.Add(this.textBoxLogin);
             this.Controls.Add(this.labelUser);
             this.Name = "F_AddAccount";
-            this.Text = "F_AddAccount";
+            this.Text = "New user creator";
             this.ResumeLayout(false);
             this.PerformLayout();
 

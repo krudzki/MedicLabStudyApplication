@@ -13,10 +13,10 @@ namespace MedicLabStudyApplication
 {
     public partial class LoginForm : Form
     {
-        C_Login_Check loginValidator = new C_Login_Check();
-        F_AddAccount userCreator = new F_AddAccount();
+        UserInDatabaseChecker loginValidator = new UserInDatabaseChecker();
+        UserCreatorForm userCreator = new UserCreatorForm();
 
-        F_MainWindowForm mainWindow = new F_MainWindowForm();
+        MainWindowForm mainWindow = new MainWindowForm();
         public LoginForm()
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace MedicLabStudyApplication
 
                 MessageBox.Show("You are logged in successfully");
                 this.Hide();
-                var mainForm = new F_MainWindowForm();
+                var mainForm = new MainWindowForm();
                 mainForm.FormClosed += (s, args) => this.Close();
                 mainForm.Show();
 

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MedicLabStudyApplication
 {
-    public partial class F_AboutUs : Form
+    public partial class AboutUsForm : Form
     {
-        public F_AboutUs()
+        public AboutUsForm()
         {
             InitializeComponent();
         }

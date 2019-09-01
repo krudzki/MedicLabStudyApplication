@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace MedicLabStudyApplication
 {
-    public partial class F_Medicines : Form
+    public partial class DoctorsForm : Form
     {
-        public F_Medicines()
+        public DoctorsForm()
         {
             InitializeComponent();
         }
@@ -24,7 +24,7 @@ namespace MedicLabStudyApplication
 
         public void FillGrid()
         {
-            MySqlCommand command = new MySqlCommand("SELECT * FROM Medicines", connection);
+            MySqlCommand command = new MySqlCommand("SELECT * FROM Doctors", connection);
             MySqlDataAdapter adapter = new MySqlDataAdapter(command);
 
             DataTable table = new DataTable();
@@ -35,7 +35,7 @@ namespace MedicLabStudyApplication
             dataGridView1.DataSource = table;
 
             DataGridViewImageColumn img = new DataGridViewImageColumn();
-            img = (DataGridViewImageColumn)dataGridView1.Columns[4];
+            img = (DataGridViewImageColumn)dataGridView1.Columns[5];
             img.ImageLayout = DataGridViewImageCellLayout.Stretch;
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -49,11 +49,12 @@ namespace MedicLabStudyApplication
 
             byte[] img = ms.ToArray();
 
-            MySqlCommand command = new MySqlCommand("INSERT INTO Medicines (Producer,Description,Contens,Photo) VALUES (@producer,@description,@contens,@photo)", connection);
+            MySqlCommand command = new MySqlCommand("INSERT INTO Doctors (First_Name,Last_Name,Speciality,Phone_Number,Photo) VALUES (@first_Name,@last_Name,@speciality,@phone_Number,@photo)", connection);
 
-            command.Parameters.Add("@producer", MySqlDbType.VarChar).Value = textBoxProducer.Text;
-            command.Parameters.Add("@description", MySqlDbType.VarChar).Value = textBoxDescription.Text;
-            command.Parameters.Add("@contens", MySqlDbType.VarChar).Value = textBoxContens.Text;
+            command.Parameters.Add("@first_Name", MySqlDbType.VarChar).Value = textBoxFirstName.Text;
+            command.Parameters.Add("@last_Name", MySqlDbType.VarChar).Value = textBoxLastName.Text;
+            command.Parameters.Add("@speciality", MySqlDbType.VarChar).Value = textBoxSpeciality.Text;
+            command.Parameters.Add("@phone_Number", MySqlDbType.VarChar).Value = textBoxTelephone.Text;
             command.Parameters.Add("@photo", MySqlDbType.Blob).Value = img;
 
             ExecMyQuery(command, "Data Inserted");
@@ -74,7 +75,7 @@ namespace MedicLabStudyApplication
             FillGrid();
         }
 
-        private void F_Medicines_Load(object sender, EventArgs e)
+        private void F_Doctors_Load(object sender, EventArgs e)
         {
             FillGrid();
         }
@@ -86,11 +87,12 @@ namespace MedicLabStudyApplication
 
             byte[] img = ms.ToArray();
 
-            MySqlCommand command = new MySqlCommand("UPDATE Medicines SET Producer=@producer,Description=@description,Contens=@contens,Photo=@photo WHERE ID = @id", connection);
+            MySqlCommand command = new MySqlCommand("UPDATE Doctors SET First_Name=@first_Name,Last_Name=@last_Name,Speciality=@speciality,Phone_Number=@phone_Number,Photo=@photo WHERE ID = @id", connection);
 
-            command.Parameters.Add("@producer", MySqlDbType.VarChar).Value = textBoxProducer.Text;
-            command.Parameters.Add("@description", MySqlDbType.VarChar).Value = textBoxDescription.Text;
-            command.Parameters.Add("@contens", MySqlDbType.VarChar).Value = textBoxContens.Text;
+            command.Parameters.Add("@first_Name", MySqlDbType.VarChar).Value = textBoxFirstName.Text;
+            command.Parameters.Add("@last_Name", MySqlDbType.VarChar).Value = textBoxLastName.Text;
+            command.Parameters.Add("@speciality", MySqlDbType.VarChar).Value = textBoxSpeciality.Text;
+            command.Parameters.Add("@phone_Number", MySqlDbType.Int32).Value = textBoxTelephone.Text;
             command.Parameters.Add("@photo", MySqlDbType.Blob).Value = img;
             command.Parameters.Add("@id", MySqlDbType.VarChar).Value = id;
 
@@ -99,7 +101,7 @@ namespace MedicLabStudyApplication
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            MySqlCommand command = new MySqlCommand("DELETE FROM Medicines WHERE ID =@id", connection);
+            MySqlCommand command = new MySqlCommand("DELETE FROM Doctors WHERE ID =@id", connection);
 
             command.Parameters.Add("@id", MySqlDbType.VarChar).Value = id;
 
@@ -121,16 +123,16 @@ namespace MedicLabStudyApplication
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Byte[] img = (Byte[])dataGridView1.CurrentRow.Cells[4].Value;
+            Byte[] img = (Byte[])dataGridView1.CurrentRow.Cells[5].Value;
 
             MemoryStream ms = new MemoryStream(img);
 
-
             pictureBoxPhoto.Image = Image.FromStream(ms);
             id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            textBoxProducer.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            textBoxDescription.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-            textBoxContens.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            textBoxFirstName.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            textBoxLastName.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            textBoxSpeciality.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            textBoxTelephone.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
         }
     }
 }

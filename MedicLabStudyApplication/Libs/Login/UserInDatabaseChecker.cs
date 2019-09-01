@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,11 +7,11 @@ using MySql.Data.MySqlClient;
 
 namespace MedicLabStudyApplication
 {
-    class Login_Check
+    class UserInDatabaseChecker
     {
-        static bool check(string login,string password)
+        public bool check(string login, string password)
         {
-            string connStr = "server=liza.umcs.lublin.pl;user=krudzki;database=krudzki;password=kwiecien0404;";
+            string connStr = "server=liza.umcs.lublin.pl;user=krudzki;database=krudzki;password=kwiecien0404;SslMode=none";
             MySqlConnection conn = new MySqlConnection(connStr);
             conn.Open();
             string sql = "SELECT username, password FROM members;";
@@ -35,7 +35,7 @@ namespace MedicLabStudyApplication
         }
 
 
-  
-          
+
+
     }
 }

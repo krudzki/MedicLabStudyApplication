@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Libs\Database\DatabaseTables.cs" />
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +98,8 @@
     <Compile Include="Forms\ServicesForm.designer.cs">
       <DependentUpon>ServicesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Libs\Database\ConnectionToDatabase.cs" />
+    <Compile Include="Libs\Database\DisplayTableData.cs" />
     <Compile Include="Libs\Email\Email.cs" />
     <Compile Include="Libs\Login\LoginValidator.cs" />
     <Compile Include="Libs\Login\UserInDatabaseChecker.cs" />

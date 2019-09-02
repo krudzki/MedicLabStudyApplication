@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MedicLabStudyApplication.Libs.Database;
 
 namespace MedicLabStudyApplication
 {
@@ -19,42 +20,23 @@ namespace MedicLabStudyApplication
             InitializeComponent();
         }
 
-        MySqlConnection connection = new MySqlConnection("server=liza.umcs.lublin.pl;user=krudzki;database=krudzki;password=kwiecien0404;SslMode=none");
+        MySqlConnection connection = ConnectionToDatabase.getNewConnection();
         String id;
+        DisplayTableData displayTableData = new DisplayTableData();
 
-        public void FillGrid()
-        {
-            MySqlCommand command = new MySqlCommand("SELECT * FROM Doctors", connection);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-
-            DataTable table = new DataTable();
-            adapter.Fill(table);
-            dataGridView1.RowTemplate.Height = 60;
-            dataGridView1.AllowUserToAddRows = false;
-
-            dataGridView1.DataSource = table;
-
-            DataGridViewImageColumn img = new DataGridViewImageColumn();
-            img = (DataGridViewImageColumn)dataGridView1.Columns[5];
-            img.ImageLayout = DataGridViewImageCellLayout.Stretch;
-
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-        }
-
-        private void buttonInsert_Click(object sender, EventArgs e)
+        private void insertIntoDatabase(object sender, EventArgs e)
         {
             MemoryStream ms = new MemoryStream();
-            pictureBoxPhoto.Image.Save(ms, pictureBoxPhoto.Image.RawFormat);
+            photoBox.Image.Save(ms, photoBox.Image.RawFormat);
 
             byte[] img = ms.ToArray();
 
-            MySqlCommand command = new MySqlCommand("INSERT INTO Doctors (First_Name,Last_Name,Speciality,Phone_Number,Photo) VALUES (@first_Name,@last_Name,@speciality,@phone_Number,@photo)", connection);
+            MySqlCommand command = new MySqlCommand($"INSERT INTO {DatabaseTables.Names.Doctors} (First_Name,Last_Name,Speciality,Phone_Number,Photo) VALUES (@first_Name,@last_Name,@speciality,@phone_Number,@photo)", connection);
 
-            command.Parameters.Add("@first_Name", MySqlDbType.VarChar).Value = textBoxFirstName.Text;
-            command.Parameters.Add("@last_Name", MySqlDbType.VarChar).Value = textBoxLastName.Text;
-            command.Parameters.Add("@speciality", MySqlDbType.VarChar).Value = textBoxSpeciality.Text;
-            command.Parameters.Add("@phone_Number", MySqlDbType.VarChar).Value = textBoxTelephone.Text;
+            command.Parameters.Add("@first_Name", MySqlDbType.VarChar).Value = inputFirstName.Text;
+            command.Parameters.Add("@last_Name", MySqlDbType.VarChar).Value = inputLastName.Text;
+            command.Parameters.Add("@speciality", MySqlDbType.VarChar).Value = inputSpeciality.Text;
+            command.Parameters.Add("@phone_Number", MySqlDbType.VarChar).Value = inputTelephone.Text;
             command.Parameters.Add("@photo", MySqlDbType.Blob).Value = img;
 
             ExecMyQuery(command, "Data Inserted");
@@ -72,27 +54,27 @@ namespace MedicLabStudyApplication
                 MessageBox.Show("Query Not Executed");
             }
             connection.Close();
-            FillGrid();
+            dataGridView1 = displayTableData.FillGrid(dataGridView1, $"{DatabaseTables.Names.Doctors}", 5);
         }
 
-        private void F_Doctors_Load(object sender, EventArgs e)
+        private void loadDoctorsForm(object sender, EventArgs e)
         {
-            FillGrid();
+            dataGridView1 = displayTableData.FillGrid(dataGridView1, $"{DatabaseTables.Names.Doctors}", 5);
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             MemoryStream ms = new MemoryStream();
-            pictureBoxPhoto.Image.Save(ms, pictureBoxPhoto.Image.RawFormat);
+            photoBox.Image.Save(ms, photoBox.Image.RawFormat);
 
             byte[] img = ms.ToArray();
 
-            MySqlCommand command = new MySqlCommand("UPDATE Doctors SET First_Name=@first_Name,Last_Name=@last_Name,Speciality=@speciality,Phone_Number=@phone_Number,Photo=@photo WHERE ID = @id", connection);
+            MySqlCommand command = new MySqlCommand($"UPDATE {DatabaseTables.Names.Doctors} SET First_Name=@first_Name,Last_Name=@last_Name,Speciality=@speciality,Phone_Number=@phone_Number,Photo=@photo WHERE ID = @id", connection);
 
-            command.Parameters.Add("@first_Name", MySqlDbType.VarChar).Value = textBoxFirstName.Text;
-            command.Parameters.Add("@last_Name", MySqlDbType.VarChar).Value = textBoxLastName.Text;
-            command.Parameters.Add("@speciality", MySqlDbType.VarChar).Value = textBoxSpeciality.Text;
-            command.Parameters.Add("@phone_Number", MySqlDbType.Int32).Value = textBoxTelephone.Text;
+            command.Parameters.Add("@first_Name", MySqlDbType.VarChar).Value = inputFirstName.Text;
+            command.Parameters.Add("@last_Name", MySqlDbType.VarChar).Value = inputLastName.Text;
+            command.Parameters.Add("@speciality", MySqlDbType.VarChar).Value = inputSpeciality.Text;
+            command.Parameters.Add("@phone_Number", MySqlDbType.Int32).Value = inputTelephone.Text;
             command.Parameters.Add("@photo", MySqlDbType.Blob).Value = img;
             command.Parameters.Add("@id", MySqlDbType.VarChar).Value = id;
 
@@ -101,7 +83,7 @@ namespace MedicLabStudyApplication
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            MySqlCommand command = new MySqlCommand("DELETE FROM Doctors WHERE ID =@id", connection);
+            MySqlCommand command = new MySqlCommand($"DELETE FROM {DatabaseTables.Names.Doctors} WHERE ID =@id", connection);
 
             command.Parameters.Add("@id", MySqlDbType.VarChar).Value = id;
 
@@ -117,7 +99,7 @@ namespace MedicLabStudyApplication
 
             if (opf.ShowDialog() == DialogResult.OK)
             {
-                pictureBoxPhoto.Image = Image.FromFile(opf.FileName);
+                photoBox.Image = Image.FromFile(opf.FileName);
             }
         }
 
@@ -127,12 +109,12 @@ namespace MedicLabStudyApplication
 
             MemoryStream ms = new MemoryStream(img);
 
-            pictureBoxPhoto.Image = Image.FromStream(ms);
+            photoBox.Image = Image.FromStream(ms);
             id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            textBoxFirstName.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            textBoxLastName.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-            textBoxSpeciality.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
-            textBoxTelephone.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+            inputFirstName.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            inputLastName.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            inputSpeciality.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            inputTelephone.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
         }
     }
 }

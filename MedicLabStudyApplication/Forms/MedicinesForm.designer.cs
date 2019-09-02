@@ -77,7 +77,7 @@
             this.buttonInsert.TabIndex = 24;
             this.buttonInsert.Text = "Insert";
             this.buttonInsert.UseVisualStyleBackColor = true;
-            this.buttonInsert.Click += new System.EventHandler(this.buttonInsert_Click);
+            this.buttonInsert.Click += new System.EventHandler(this.insertIntoDatabase);
             // 
             // buttonChoosePhoto
             // 
@@ -87,6 +87,7 @@
             this.buttonChoosePhoto.TabIndex = 23;
             this.buttonChoosePhoto.Text = "choose photo";
             this.buttonChoosePhoto.UseVisualStyleBackColor = true;
+            this.buttonChoosePhoto.Click += new System.EventHandler(this.buttonChoosePhoto_Click);
             // 
             // pictureBoxPhoto
             // 
@@ -195,7 +196,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "MedicinesForm";
             this.Text = "Medicines";
-            this.Load += new System.EventHandler(this.F_Medicines_Load);
+            this.Load += new System.EventHandler(this.loadMedicinesForm);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

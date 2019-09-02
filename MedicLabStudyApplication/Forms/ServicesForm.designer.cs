@@ -73,7 +73,7 @@
             this.buttonInsert.TabIndex = 37;
             this.buttonInsert.Text = "Insert";
             this.buttonInsert.UseVisualStyleBackColor = true;
-            this.buttonInsert.Click += new System.EventHandler(this.buttonInsert_Click);
+            this.buttonInsert.Click += new System.EventHandler(this.insertIntoDatabase);
             // 
             // labelCost
             // 
@@ -161,7 +161,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "ServicesForm";
             this.Text = "Services";
-            this.Load += new System.EventHandler(this.F_Services_Load);
+            this.Load += new System.EventHandler(this.loadServicesForm);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

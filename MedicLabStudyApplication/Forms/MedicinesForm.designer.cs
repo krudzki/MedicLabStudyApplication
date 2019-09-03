@@ -1,6 +1,6 @@
 ﻿namespace MedicLabStudyApplication
 {
-    partial class F_Medicines
+    partial class MedicinesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_Medicines));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MedicinesForm));
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonInsert = new System.Windows.Forms.Button();
@@ -77,7 +77,7 @@
             this.buttonInsert.TabIndex = 24;
             this.buttonInsert.Text = "Insert";
             this.buttonInsert.UseVisualStyleBackColor = true;
-            this.buttonInsert.Click += new System.EventHandler(this.buttonInsert_Click);
+            this.buttonInsert.Click += new System.EventHandler(this.insertIntoDatabase);
             // 
             // buttonChoosePhoto
             // 
@@ -87,6 +87,7 @@
             this.buttonChoosePhoto.TabIndex = 23;
             this.buttonChoosePhoto.Text = "choose photo";
             this.buttonChoosePhoto.UseVisualStyleBackColor = true;
+            this.buttonChoosePhoto.Click += new System.EventHandler(this.buttonChoosePhoto_Click);
             // 
             // pictureBoxPhoto
             // 
@@ -173,7 +174,7 @@
             this.textBoxDescription.Size = new System.Drawing.Size(298, 127);
             this.textBoxDescription.TabIndex = 17;
             // 
-            // F_Medicines
+            // MedicinesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -193,9 +194,9 @@
             this.Controls.Add(this.labelProducer);
             this.Controls.Add(this.textBoxProducer);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "F_Medicines";
-            this.Text = "F_Medicines";
-            this.Load += new System.EventHandler(this.F_Medicines_Load);
+            this.Name = "MedicinesForm";
+            this.Text = "Medicines";
+            this.Load += new System.EventHandler(this.loadMedicinesForm);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

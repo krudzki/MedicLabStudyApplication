@@ -1,6 +1,6 @@
 ﻿namespace MedicLabStudyApplication
 {
-    partial class F_Services
+    partial class ServicesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_Services));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServicesForm));
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
             this.buttonInsert = new System.Windows.Forms.Button();
@@ -37,7 +37,7 @@
             this.labelDescription = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
-            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.name = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -73,7 +73,7 @@
             this.buttonInsert.TabIndex = 37;
             this.buttonInsert.Text = "Insert";
             this.buttonInsert.UseVisualStyleBackColor = true;
-            this.buttonInsert.Click += new System.EventHandler(this.buttonInsert_Click);
+            this.buttonInsert.Click += new System.EventHandler(this.insertIntoDatabase);
             // 
             // labelCost
             // 
@@ -125,11 +125,11 @@
             // 
             // textBoxName
             // 
-            this.textBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxName.Location = new System.Drawing.Point(121, 28);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(298, 29);
-            this.textBoxName.TabIndex = 28;
+            this.name.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.name.Location = new System.Drawing.Point(121, 28);
+            this.name.Name = "textBoxName";
+            this.name.Size = new System.Drawing.Size(298, 29);
+            this.name.TabIndex = 28;
             // 
             // dataGridView1
             // 
@@ -140,7 +140,7 @@
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // F_Services
+            // ServicesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -157,11 +157,11 @@
             this.Controls.Add(this.labelDescription);
             this.Controls.Add(this.textBoxDescription);
             this.Controls.Add(this.labelName);
-            this.Controls.Add(this.textBoxName);
+            this.Controls.Add(this.name);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "F_Services";
-            this.Text = "F_Services";
-            this.Load += new System.EventHandler(this.F_Services_Load);
+            this.Name = "ServicesForm";
+            this.Text = "Services";
+            this.Load += new System.EventHandler(this.loadServicesForm);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -178,7 +178,7 @@
         private System.Windows.Forms.Label labelDescription;
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.TextBox textBoxName;
+        private System.Windows.Forms.TextBox name;
         private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

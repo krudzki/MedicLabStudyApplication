@@ -9,47 +9,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MedicLabStudyApplication.Libs.Database;
 
 namespace MedicLabStudyApplication
 {
-    public partial class F_Medicines : Form
+    public partial class MedicinesForm : Form
     {
-        public F_Medicines()
+        public MedicinesForm()
         {
             InitializeComponent();
         }
 
-        MySqlConnection connection = new MySqlConnection("server=liza.umcs.lublin.pl;user=krudzki;database=krudzki;password=kwiecien0404;SslMode=none");
+        MySqlConnection connection = ConnectionToDatabase.getNewConnection();
         String id;
+        CRUD crud = new CRUD();
 
-        public void FillGrid()
-        {
-            MySqlCommand command = new MySqlCommand("SELECT * FROM Medicines", connection);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-
-            DataTable table = new DataTable();
-            adapter.Fill(table);
-            dataGridView1.RowTemplate.Height = 60;
-            dataGridView1.AllowUserToAddRows = false;
-
-            dataGridView1.DataSource = table;
-
-            DataGridViewImageColumn img = new DataGridViewImageColumn();
-            img = (DataGridViewImageColumn)dataGridView1.Columns[4];
-            img.ImageLayout = DataGridViewImageCellLayout.Stretch;
-
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-        }
-
-        private void buttonInsert_Click(object sender, EventArgs e)
+        private void insertIntoDatabase(object sender, EventArgs e)
         {
             MemoryStream ms = new MemoryStream();
             pictureBoxPhoto.Image.Save(ms, pictureBoxPhoto.Image.RawFormat);
 
             byte[] img = ms.ToArray();
 
-            MySqlCommand command = new MySqlCommand("INSERT INTO Medicines (Producer,Description,Contens,Photo) VALUES (@producer,@description,@contens,@photo)", connection);
+            MySqlCommand command = new MySqlCommand($"INSERT INTO {DatabaseTables.Names.Medicines} (Producer,Description,Contens,Photo) VALUES (@producer,@description,@contens,@photo)", connection);
 
             command.Parameters.Add("@producer", MySqlDbType.VarChar).Value = textBoxProducer.Text;
             command.Parameters.Add("@description", MySqlDbType.VarChar).Value = textBoxDescription.Text;
@@ -71,12 +53,17 @@ namespace MedicLabStudyApplication
                 MessageBox.Show("Query Not Executed");
             }
             connection.Close();
-            FillGrid();
+            updateDataGrid();
         }
 
-        private void F_Medicines_Load(object sender, EventArgs e)
+        private void loadMedicinesForm(object sender, EventArgs e)
         {
-            FillGrid();
+            updateDataGrid();
+        }
+
+        private void updateDataGrid()
+        {
+            dataGridView1 = crud.readDatabaseContent(dataGridView1, $"{DatabaseTables.Names.Medicines}", 4);
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
@@ -86,7 +73,7 @@ namespace MedicLabStudyApplication
 
             byte[] img = ms.ToArray();
 
-            MySqlCommand command = new MySqlCommand("UPDATE Medicines SET Producer=@producer,Description=@description,Contens=@contens,Photo=@photo WHERE ID = @id", connection);
+            MySqlCommand command = new MySqlCommand($"UPDATE {DatabaseTables.Names.Medicines} SET Producer=@producer,Description=@description,Contens=@contens,Photo=@photo WHERE ID = @id", connection);
 
             command.Parameters.Add("@producer", MySqlDbType.VarChar).Value = textBoxProducer.Text;
             command.Parameters.Add("@description", MySqlDbType.VarChar).Value = textBoxDescription.Text;
@@ -99,7 +86,7 @@ namespace MedicLabStudyApplication
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            MySqlCommand command = new MySqlCommand("DELETE FROM Medicines WHERE ID =@id", connection);
+            MySqlCommand command = new MySqlCommand($"DELETE FROM {DatabaseTables.Names.Medicines} WHERE ID =@id", connection);
 
             command.Parameters.Add("@id", MySqlDbType.VarChar).Value = id;
 

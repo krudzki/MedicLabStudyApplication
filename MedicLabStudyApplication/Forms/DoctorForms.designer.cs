@@ -36,14 +36,14 @@
             this.photoBox = new System.Windows.Forms.PictureBox();
             this.labelPhoto = new System.Windows.Forms.Label();
             this.labelSpeciality = new System.Windows.Forms.Label();
-            this.inputSpeciality = new System.Windows.Forms.TextBox();
+            this.speciality = new System.Windows.Forms.TextBox();
             this.labelLastName = new System.Windows.Forms.Label();
-            this.inputLastName = new System.Windows.Forms.TextBox();
+            this.lastName = new System.Windows.Forms.TextBox();
             this.labelFirstName = new System.Windows.Forms.Label();
-            this.inputFirstName = new System.Windows.Forms.TextBox();
+            this.firstName = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.labelTelephone = new System.Windows.Forms.Label();
-            this.inputTelephone = new System.Windows.Forms.TextBox();
+            this.phoneNumber = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.photoBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -123,12 +123,12 @@
             // 
             // inputSpeciality
             // 
-            this.inputSpeciality.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.inputSpeciality.Location = new System.Drawing.Point(124, 107);
-            this.inputSpeciality.Multiline = true;
-            this.inputSpeciality.Name = "inputSpeciality";
-            this.inputSpeciality.Size = new System.Drawing.Size(298, 71);
-            this.inputSpeciality.TabIndex = 32;
+            this.speciality.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.speciality.Location = new System.Drawing.Point(124, 107);
+            this.speciality.Multiline = true;
+            this.speciality.Name = "inputSpeciality";
+            this.speciality.Size = new System.Drawing.Size(298, 71);
+            this.speciality.TabIndex = 32;
             // 
             // labelLastName
             // 
@@ -142,12 +142,12 @@
             // 
             // inputLastName
             // 
-            this.inputLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.inputLastName.Location = new System.Drawing.Point(124, 64);
-            this.inputLastName.Multiline = true;
-            this.inputLastName.Name = "inputLastName";
-            this.inputLastName.Size = new System.Drawing.Size(298, 24);
-            this.inputLastName.TabIndex = 30;
+            this.lastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lastName.Location = new System.Drawing.Point(124, 64);
+            this.lastName.Multiline = true;
+            this.lastName.Name = "inputLastName";
+            this.lastName.Size = new System.Drawing.Size(298, 24);
+            this.lastName.TabIndex = 30;
             // 
             // labelFirstName
             // 
@@ -161,11 +161,11 @@
             // 
             // inputFirstName
             // 
-            this.inputFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.inputFirstName.Location = new System.Drawing.Point(124, 26);
-            this.inputFirstName.Name = "inputFirstName";
-            this.inputFirstName.Size = new System.Drawing.Size(298, 29);
-            this.inputFirstName.TabIndex = 28;
+            this.firstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.firstName.Location = new System.Drawing.Point(124, 26);
+            this.firstName.Name = "inputFirstName";
+            this.firstName.Size = new System.Drawing.Size(298, 29);
+            this.firstName.TabIndex = 28;
             // 
             // dataGridView1
             // 
@@ -188,12 +188,12 @@
             // 
             // inputTelephone
             // 
-            this.inputTelephone.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.inputTelephone.Location = new System.Drawing.Point(124, 205);
-            this.inputTelephone.Multiline = true;
-            this.inputTelephone.Name = "inputTelephone";
-            this.inputTelephone.Size = new System.Drawing.Size(298, 24);
-            this.inputTelephone.TabIndex = 41;
+            this.phoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.phoneNumber.Location = new System.Drawing.Point(124, 205);
+            this.phoneNumber.Multiline = true;
+            this.phoneNumber.Name = "inputTelephone";
+            this.phoneNumber.Size = new System.Drawing.Size(298, 24);
+            this.phoneNumber.TabIndex = 41;
             // 
             // DoctorsForm
             // 
@@ -204,7 +204,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1062, 546);
-            this.Controls.Add(this.inputTelephone);
+            this.Controls.Add(this.phoneNumber);
             this.Controls.Add(this.labelTelephone);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonUpdate);
@@ -213,11 +213,11 @@
             this.Controls.Add(this.photoBox);
             this.Controls.Add(this.labelPhoto);
             this.Controls.Add(this.labelSpeciality);
-            this.Controls.Add(this.inputSpeciality);
+            this.Controls.Add(this.speciality);
             this.Controls.Add(this.labelLastName);
-            this.Controls.Add(this.inputLastName);
+            this.Controls.Add(this.lastName);
             this.Controls.Add(this.labelFirstName);
-            this.Controls.Add(this.inputFirstName);
+            this.Controls.Add(this.firstName);
             this.Controls.Add(this.dataGridView1);
             this.Name = "DoctorsForm";
             this.Text = "Doctors";
@@ -238,13 +238,13 @@
         private System.Windows.Forms.PictureBox photoBox;
         private System.Windows.Forms.Label labelPhoto;
         private System.Windows.Forms.Label labelSpeciality;
-        private System.Windows.Forms.TextBox inputSpeciality;
+        private System.Windows.Forms.TextBox speciality;
         private System.Windows.Forms.Label labelLastName;
-        private System.Windows.Forms.TextBox inputLastName;
+        private System.Windows.Forms.TextBox lastName;
         private System.Windows.Forms.Label labelFirstName;
-        private System.Windows.Forms.TextBox inputFirstName;
+        private System.Windows.Forms.TextBox firstName;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label labelTelephone;
-        private System.Windows.Forms.TextBox inputTelephone;
+        private System.Windows.Forms.TextBox phoneNumber;
     }
 }

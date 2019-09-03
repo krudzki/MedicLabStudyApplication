@@ -22,7 +22,7 @@ namespace MedicLabStudyApplication
 
         MySqlConnection connection = ConnectionToDatabase.getNewConnection();
         String id;
-        DisplayTableData displayTableData = new DisplayTableData();
+        CRUD crud = new CRUD();
 
         private void insertIntoDatabase(object sender, EventArgs e)
         {
@@ -63,7 +63,7 @@ namespace MedicLabStudyApplication
 
         private void updateDataGrid()
         {
-            dataGridView1 = displayTableData.FillGrid(dataGridView1, $"{DatabaseTables.Names.Medicines}", 4);
+            dataGridView1 = crud.readDatabaseContent(dataGridView1, $"{DatabaseTables.Names.Medicines}", 4);
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)

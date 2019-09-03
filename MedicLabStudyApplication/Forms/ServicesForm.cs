@@ -22,13 +22,13 @@ namespace MedicLabStudyApplication
 
         MySqlConnection connection = ConnectionToDatabase.getNewConnection();
         String id;
-        DisplayTableData displayTableData = new DisplayTableData();
+        CRUD crud = new CRUD();
         
         private void insertIntoDatabase(object sender, EventArgs e)
         {
             MySqlCommand command = new MySqlCommand($"INSERT INTO {DatabaseTables.Names.Medical_services}(Name,Description,Cost) VALUES(@name,@description,@cost)", connection);
 
-            command.Parameters.Add("@name", MySqlDbType.VarChar).Value = textBoxName.Text;
+            command.Parameters.Add($"@name", MySqlDbType.VarChar).Value = name.Text;
             command.Parameters.Add("@description", MySqlDbType.VarChar).Value = textBoxDescription.Text;
             command.Parameters.Add("@cost", MySqlDbType.Float).Value = textBoxCost.Text;
 
@@ -47,19 +47,24 @@ namespace MedicLabStudyApplication
                 MessageBox.Show("Query Not Executed");
             }
             connection.Close();
-            dataGridView1 = displayTableData.FillGrid(dataGridView1, $"{DatabaseTables.Names.Medical_services}", -1);
+            updateDataGrid();
         }
 
         private void loadServicesForm(object sender, EventArgs e)
         {
-            dataGridView1 = displayTableData.FillGrid(dataGridView1, $"{DatabaseTables.Names.Medical_services}", -1);
+            updateDataGrid();
+        }
+
+        private void updateDataGrid()
+        {
+            dataGridView1 = crud.readDatabaseContent(dataGridView1, $"{DatabaseTables.Names.Medical_services}", -1);
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             MySqlCommand command = new MySqlCommand($"UPDATE {DatabaseTables.Names.Medical_services} SET Name=@name,Description=@description,Cost=@cost WHERE ID = @id", connection);
 
-            command.Parameters.Add("@name", MySqlDbType.VarChar).Value = textBoxName.Text;
+            command.Parameters.Add("@name", MySqlDbType.VarChar).Value = name.Text;
             command.Parameters.Add("@description", MySqlDbType.VarChar).Value = textBoxDescription.Text;
             command.Parameters.Add("@cost", MySqlDbType.Float).Value = textBoxCost.Text;
             command.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
@@ -79,7 +84,7 @@ namespace MedicLabStudyApplication
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            textBoxName.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            name.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
             textBoxDescription.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
             textBoxCost.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
         }

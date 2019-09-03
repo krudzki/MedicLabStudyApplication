@@ -18,26 +18,49 @@ namespace MedicLabStudyApplication
         public DoctorsForm()
         {
             InitializeComponent();
+            createInputFieldList();
         }
 
         MySqlConnection connection = ConnectionToDatabase.getNewConnection();
         String id;
-        DisplayTableData displayTableData = new DisplayTableData();
+        CRUD crud = new CRUD();
+        List<String> doctorDatabaseColumns = new List<string> { "ID", "First_Name", "Last_Name", "Speciality", "Phone_Number", "Photo" };
+        List<String> doctorDatabaseColumnsParam = new List<string> { "id", "firstName", "lastName", "Speciality", "phoneNumber", "photo" };
+        List<String> inputFields = new List<string>();
+
+        private void createInputFieldList()
+        {
+            inputFields.Add(firstName.Text);
+            inputFields.Add(lastName.Text);
+            inputFields.Add(speciality.Text);
+            inputFields.Add(phoneNumber.Text);
+        }
 
         private void insertIntoDatabase(object sender, EventArgs e)
         {
             MemoryStream ms = new MemoryStream();
             photoBox.Image.Save(ms, photoBox.Image.RawFormat);
 
-            byte[] img = ms.ToArray();
+            byte[] photo = ms.ToArray();
 
-            MySqlCommand command = new MySqlCommand($"INSERT INTO {DatabaseTables.Names.Doctors} (First_Name,Last_Name,Speciality,Phone_Number,Photo) VALUES (@first_Name,@last_Name,@speciality,@phone_Number,@photo)", connection);
+            MySqlCommand command = new MySqlCommand($"INSERT INTO {DatabaseTables.Names.Doctors} " +
+                $"({doctorDatabaseColumns[1]}," +
+                $"{doctorDatabaseColumns[2]}," +
+                $"{doctorDatabaseColumns[3]}," +
+                $"{doctorDatabaseColumns[4]}," +
+                $"{doctorDatabaseColumns[5]}) " +
+                $"VALUES " +
+                    $"(@{doctorDatabaseColumnsParam[1]}," +
+                    $"@{doctorDatabaseColumnsParam[2]}," +
+                    $"@{doctorDatabaseColumnsParam[3]}," +
+                    $"@{doctorDatabaseColumnsParam[4]}," +
+                    $"@{doctorDatabaseColumnsParam[5]})", connection);
 
-            command.Parameters.Add("@first_Name", MySqlDbType.VarChar).Value = inputFirstName.Text;
-            command.Parameters.Add("@last_Name", MySqlDbType.VarChar).Value = inputLastName.Text;
-            command.Parameters.Add("@speciality", MySqlDbType.VarChar).Value = inputSpeciality.Text;
-            command.Parameters.Add("@phone_Number", MySqlDbType.VarChar).Value = inputTelephone.Text;
-            command.Parameters.Add("@photo", MySqlDbType.Blob).Value = img;
+            command.Parameters.Add($"@{doctorDatabaseColumnsParam[1]}", MySqlDbType.VarChar).Value = firstName.Text;
+            command.Parameters.Add($"@{doctorDatabaseColumnsParam[2]}", MySqlDbType.VarChar).Value = lastName.Text;
+            command.Parameters.Add($"@{doctorDatabaseColumnsParam[3]}", MySqlDbType.VarChar).Value = speciality.Text;
+            command.Parameters.Add($"@{doctorDatabaseColumnsParam[4]}", MySqlDbType.VarChar).Value = phoneNumber.Text;
+            command.Parameters.Add($"@{doctorDatabaseColumnsParam[5]}", MySqlDbType.Blob).Value = photo;
 
             ExecMyQuery(command, "Data Inserted");
         }
@@ -54,12 +77,17 @@ namespace MedicLabStudyApplication
                 MessageBox.Show("Query Not Executed");
             }
             connection.Close();
-            dataGridView1 = displayTableData.FillGrid(dataGridView1, $"{DatabaseTables.Names.Doctors}", 5);
+            updateDataGrid();
         }
 
         private void loadDoctorsForm(object sender, EventArgs e)
         {
-            dataGridView1 = displayTableData.FillGrid(dataGridView1, $"{DatabaseTables.Names.Doctors}", 5);
+            updateDataGrid();
+        }
+
+        private void updateDataGrid()
+        {
+            dataGridView1 = crud.readDatabaseContent(dataGridView1, $"{DatabaseTables.Names.Doctors}", 5);
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
@@ -71,10 +99,10 @@ namespace MedicLabStudyApplication
 
             MySqlCommand command = new MySqlCommand($"UPDATE {DatabaseTables.Names.Doctors} SET First_Name=@first_Name,Last_Name=@last_Name,Speciality=@speciality,Phone_Number=@phone_Number,Photo=@photo WHERE ID = @id", connection);
 
-            command.Parameters.Add("@first_Name", MySqlDbType.VarChar).Value = inputFirstName.Text;
-            command.Parameters.Add("@last_Name", MySqlDbType.VarChar).Value = inputLastName.Text;
-            command.Parameters.Add("@speciality", MySqlDbType.VarChar).Value = inputSpeciality.Text;
-            command.Parameters.Add("@phone_Number", MySqlDbType.Int32).Value = inputTelephone.Text;
+            command.Parameters.Add("@first_Name", MySqlDbType.VarChar).Value = firstName.Text;
+            command.Parameters.Add("@last_Name", MySqlDbType.VarChar).Value = lastName.Text;
+            command.Parameters.Add("@speciality", MySqlDbType.VarChar).Value = speciality.Text;
+            command.Parameters.Add("@phone_Number", MySqlDbType.Int32).Value = phoneNumber.Text;
             command.Parameters.Add("@photo", MySqlDbType.Blob).Value = img;
             command.Parameters.Add("@id", MySqlDbType.VarChar).Value = id;
 
@@ -111,10 +139,10 @@ namespace MedicLabStudyApplication
 
             photoBox.Image = Image.FromStream(ms);
             id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            inputFirstName.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            inputLastName.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-            inputSpeciality.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
-            inputTelephone.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+            firstName.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            lastName.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            speciality.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            phoneNumber.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
         }
     }
 }

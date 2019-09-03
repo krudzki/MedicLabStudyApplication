@@ -11,7 +11,6 @@ namespace MedicLabStudyApplication.Libs.Database
     {
         public static MySqlConnection getNewConnection()
         {
-            //MySqlConnection mySqlConnection = 
             return new MySqlConnection("server=liza.umcs.lublin.pl;user=krudzki;database=krudzki;password=kwiecien0404;SslMode=none");
         }
     }
